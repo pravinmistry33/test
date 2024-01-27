@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Deploy'){
             steps{
-                sh "docker run -d --name JenkinsTest1 -p 127.0.0.1:8003:80 pravinmistry33/getting-started:latest"
+                sh "docker run -dp 127.0.0.1:8005:80 pravinmistry33/getting-started:latest"
             }
         }
     }
