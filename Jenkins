@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages{
-        stage('code'){
+        stage('Code'){
             steps{
                 git url: 'https://github.com/pravinmistry33/JenkinsTest.git', branch: 'master'
             }
