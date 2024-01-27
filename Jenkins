@@ -1,15 +1,26 @@
 pipeline {
-  agent { dockerfile true } // Use Dockerfile as the agent for the pipeline
-
-  stages {
-    stage('Test') {
-      steps {
-        sh '''
-          curl --version // Check the version of curl
-          node --version // Check the version of Node.js
-          npm --version  // Check the version of npm
-        '''
-      }
+    agent any
+    stages{
+        stage('code'){
+            steps{
+                git url: 'https://github.com/pravinmistry33/JenkinsTest.git', branch: 'master'
+            }
+        }
+        
+        stage('Build'){
+            steps{
+                sh 'docker build . -t pravinmistry33/getting-started:latest'
+            }
+        }
+        stage('Test'){
+            steps{
+                echo "Testing"
+            }
+        }
+        stage('Deploy'){
+            steps{
+                sh "docker run -d --name pravin -p 8002:8002 pravinmistry33/getting-started:latest"
+            }
+        }
     }
-  }
 }
