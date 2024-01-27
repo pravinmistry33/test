@@ -1,9 +1,8 @@
-FROM ubuntu:20.04
-
-# Update packages and install curl
-RUN apt-get update && \
-    apt-get install -y curl
-
-# Install Node.js
-RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - && \
-    apt-get install -y nodejs
+FROM ubuntu 
+RUN apt update 
+RUN apt install -y apache2 
+RUN apt install -y apache2-utils 
+RUN apt clean 
+COPY ./index.html /var/www/html
+EXPOSE 80
+CMD ["apache2ctl", "-D", "FOREGROUND"]
