@@ -1,4 +1,5 @@
-pipeline {
+#pipeline
+pipeline { 
     agent any
     stages{
         stage('Code'){
